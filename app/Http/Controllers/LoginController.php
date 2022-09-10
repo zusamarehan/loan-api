@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
-    public function __invoke(LoginUserAction $loginUserAction, Request $loginRequest) : Response|Application|ResponseFactory
+    public function __invoke(LoginUserAction $loginUserAction, Request $loginRequest): Response|Application|ResponseFactory
     {
         return response($loginUserAction->execute($loginRequest->all()));
     }

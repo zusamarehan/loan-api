@@ -7,12 +7,12 @@ use Illuminate\Http\Response;
 
 class RegisterUserAction
 {
-    public function execute(array $data)
+    public function execute(array $data): array
     {
         validator($data, [
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'string', 'confirmed']
+            'password' => ['required', 'string', 'confirmed'],
         ])->validate();
 
         $user = new User();
@@ -23,7 +23,7 @@ class RegisterUserAction
 
         return [
             'status' => Response::HTTP_CREATED,
-            'token' => $user->createToken('API Token')->plainTextToken
+            'token' => $user->createToken('API Token')->plainTextToken,
         ];
     }
 }

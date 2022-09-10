@@ -9,7 +9,7 @@ use Illuminate\Http\Response;
 
 class LogoutController extends Controller
 {
-    public function __invoke(LogoutUserAction $logoutUserAction) : Response|Application|ResponseFactory
+    public function __invoke(LogoutUserAction $logoutUserAction): Response|Application|ResponseFactory
     {
         return response($logoutUserAction->execute());
     }

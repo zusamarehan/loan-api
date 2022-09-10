@@ -8,32 +8,32 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginUserAction
 {
-    public function execute(array $data)
+    public function execute(array $data): array
     {
         validator($data, [
             'email' => ['required', 'email'],
-            'password' => ['required', 'string']
+            'password' => ['required', 'string'],
         ])->validate();
 
         $user = User::query()->where('email', $data['email'])->first();
 
-        if (!$user) {
+        if (! $user) {
             return [
                 'status' => Response::HTTP_UNAUTHORIZED,
-                'message' => "User does not exists "
+                'message' => 'User does not exists',
             ];
         }
 
-        if (!$user && !Hash::check($data['password'], $user->getAuthPassword())) {
+        if (! $user && ! Hash::check($data['password'], $user->getAuthPassword())) {
             return [
                 'status' => Response::HTTP_UNAUTHORIZED,
-                'message' => "Credentials do not match"
+                'message' => 'Credentials do not match',
             ];
         }
 
         return [
             'status' => Response::HTTP_OK,
-            'token' => $user->createToken(time())->plainTextToken
+            'token' => $user->createToken(time())->plainTextToken,
         ];
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Http\Response;
 
 class LogoutUserAction
 {
-    public function execute()
+    public function execute(): array
     {
         auth()->user()->currentAccessToken()->delete();
 

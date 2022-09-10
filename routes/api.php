@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 // Public Routes
 Route::post('/register', Controllers\RegisterController::class);
-Route::post('/login',Controllers\LoginController::class);
+Route::post('/login', Controllers\LoginController::class);
 
 // Private Routes
-Route::middleware(['middleware' => 'auth:sanctum'])->group(function() {
+Route::middleware(['middleware' => 'auth:sanctum'])->group(function () {
     Route::post('/logout', Controllers\LogoutController::class);
 });
