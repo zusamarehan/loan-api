@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Loan extends Model
 {
@@ -25,4 +26,12 @@ class Loan extends Model
         'terms',
         'status',
     ];
+
+    /**
+     * Get the repayments list of the loan.
+     */
+    public function repayments(): HasMany
+    {
+        return $this->hasMany(Repayment::class);
+    }
 }

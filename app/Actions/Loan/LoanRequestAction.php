@@ -2,12 +2,20 @@
 
 namespace App\Actions\Loan;
 
-use App\Http\Resources\Loan\LoanRequestResource;
+use App\Actions\Repayment\RepaymentGenerateAction;
+use App\Http\Resources\Loan\LoanResource;
 use App\Models\Loan;
 
 class LoanRequestAction
 {
-    public function execute(array $data): LoanRequestResource
+    protected $repayments;
+
+    public function __construct(RepaymentGenerateAction $repaymentGenerateAction)
+    {
+        $this->repayments = $repaymentGenerateAction;
+    }
+
+    public function execute(array $data): LoanResource
     {
         validator($data, [
             'amount' => ['required', 'numeric', 'gte:1'],
@@ -21,6 +29,9 @@ class LoanRequestAction
         $loan->status = Loan::APPROVAL_PENDING;
         $loan->save();
 
-        return new LoanRequestResource($loan);
+        $this->repayments->execute($loan);
+        $loan->load(['repayments']);
+
+        return new LoanResource($loan);
     }
 }

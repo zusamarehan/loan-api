@@ -1,26 +1,27 @@
 <?php
 
-namespace App\Http\Resources\Loan;
+namespace App\Http\Resources\Repayment;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class LoanRequestResource extends JsonResource
+class RepaymentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
     {
         return [
             'id' => $this->id,
+            'loan_id' => $this->loan_id,
             'amount' => $this->amount,
-            'term' => $this->term,
+            'due_on' => $this->due_on,
+            'paid_on' => $this->paid_on,
             'status' => $this->status,
-            'notes' => $this->notes,
-            'handled_by_id' => $this->handled_by_id,
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
         ];
