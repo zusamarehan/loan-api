@@ -9,7 +9,7 @@ class RepaymentGenerateAction
 {
     public function execute(Loan $loan)
     {
-        $repaymentAmount = $loan->amount/$loan->term;
+        $repaymentAmount = $loan->amount / $loan->term;
 
         $repayment = [];
 

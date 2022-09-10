@@ -10,7 +10,9 @@ class Repayment extends Model
     use HasFactory;
 
     const REPAYMENT_PENDING = 'PENDING';
+
     const REPAYMENT_PAID = 'PAID';
+
     const REPAYMENT_DEFAULTED = 'DEFAULTED';
 
     /**
@@ -23,5 +25,4 @@ class Repayment extends Model
         'due_on',
         'paid_on',
     ];
-
 }
