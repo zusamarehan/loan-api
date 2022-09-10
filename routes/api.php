@@ -21,4 +21,8 @@ Route::post('/login', Controllers\LoginController::class);
 // Private Routes
 Route::middleware(['middleware' => 'auth:sanctum'])->group(function () {
     Route::post('/logout', Controllers\LogoutController::class);
+
+    Route::prefix('loan')->group(function () {
+        Route::post('/request', Controllers\LoanRequestController::class);
+    });
 });
