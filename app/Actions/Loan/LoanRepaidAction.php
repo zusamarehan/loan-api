@@ -13,7 +13,7 @@ class LoanRepaidAction
             $repayments->where('status', Repayment::REPAYMENT_PENDING);
         }]);
 
-        if(count($loan->repayments) > 0) {
+        if (count($loan->repayments) > 0) {
             return false;
         }
 

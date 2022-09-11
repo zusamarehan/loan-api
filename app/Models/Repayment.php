@@ -25,7 +25,7 @@ class Repayment extends Model
         'amount',
         'due_on',
         'paid_on',
-        'amount_paid'
+        'amount_paid',
     ];
 
     /**

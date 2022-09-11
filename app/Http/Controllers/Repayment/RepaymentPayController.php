@@ -6,10 +6,10 @@ use App\Actions\Repayment\RepaymentPayAction;
 use App\Http\Controllers\Controller;
 use App\Models\Loan;
 use App\Models\Repayment;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Contracts\Foundation\Application;
 
 class RepaymentPayController extends Controller
 {
@@ -19,13 +19,13 @@ class RepaymentPayController extends Controller
 
         if ($repayment->loan->status !== Loan::LOAN_APPROVED) {
             return response([
-                'message' => "Loan has not been approved, yet!"
+                'message' => 'Loan has not been approved, yet!',
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         if ($repayment->status === Repayment::REPAYMENT_PAID) {
             return response([
-                'message' => "Current term has been paid already!"
+                'message' => 'Current term has been paid already!',
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
