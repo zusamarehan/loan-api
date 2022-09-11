@@ -15,9 +15,10 @@ class LoanDeclineController extends Controller
     {
         if ($loan->status === Loan::LOAN_DECLINE) {
             return response([
-                'message' => 'Loan has been already been declined'
+                'message' => 'Loan has been already been declined',
             ], Response::HTTP_CONFLICT);
         }
+
         return response($loanDeclineAction->execute($loan, $loanDeclineRequest->all()));
     }
 }

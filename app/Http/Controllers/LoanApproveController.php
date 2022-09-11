@@ -15,9 +15,10 @@ class LoanApproveController extends Controller
     {
         if ($loan->status === Loan::LOAN_APPROVED) {
             return response([
-                'message' => 'Loan has been already been approved'
+                'message' => 'Loan has been already been approved',
             ], Response::HTTP_CONFLICT);
         }
+
         return response($loanApprovalAction->execute($loan, $loanApprovalRequest->all()));
     }
 }
