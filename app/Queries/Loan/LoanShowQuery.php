@@ -9,7 +9,7 @@ class LoanShowQuery
 {
     public function execute(Loan $loan)
     {
-        $loan->load(['repayments']);
+        $loan->load(['repayments', 'user', 'handled_by']);
 
         return new LoanResource($loan);
     }
