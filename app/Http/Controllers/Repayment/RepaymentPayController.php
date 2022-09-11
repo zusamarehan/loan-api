@@ -15,6 +15,8 @@ class RepaymentPayController extends Controller
 {
     public function __invoke(Repayment $repayment, RepaymentPayAction $repaymentPayAction, Request $repaymentRequest): Response|Application|ResponseFactory
     {
+        $this->authorize('repay', $repayment);
+
         $repayment->load(['loan']);
 
         if ($repayment->loan->status !== Loan::LOAN_APPROVED) {
