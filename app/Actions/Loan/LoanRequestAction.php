@@ -26,7 +26,7 @@ class LoanRequestAction
         $loan->user_id = auth()->user()->id;
         $loan->amount = round($data['amount'], 2);
         $loan->term = (int) $data['term'];
-        $loan->status = Loan::APPROVAL_PENDING;
+        $loan->status = Loan::LOAN_PENDING;
         $loan->save();
 
         $this->repayments->execute($loan);
