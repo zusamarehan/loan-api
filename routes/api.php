@@ -31,4 +31,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('/{loan}/decline', Controllers\Loan\LoanDeclineController::class);
         });
     });
+
+    Route::prefix('repayment')->middleware(['customer'])->group(function () {
+        Route::post('/{repayment}/repay', Controllers\Repayment\RepaymentPayController::class);
+    });
 });

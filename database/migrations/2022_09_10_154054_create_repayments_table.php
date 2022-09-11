@@ -19,6 +19,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Loan::class);
             $table->decimal('amount');
+            $table->decimal('amount_paid')->nullable();
             $table->date('due_on');
             $table->date('paid_on')->nullable();
             $table->string('status')->default(Repayment::REPAYMENT_PENDING);

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Repayment extends Model
 {
@@ -11,7 +12,7 @@ class Repayment extends Model
 
     const REPAYMENT_PENDING = 'PENDING';
 
-    const REPAYMENT_PAID = 'PAID';
+    const REPAYMENT_PAID = 'REPAID';
 
     const REPAYMENT_DEFAULTED = 'DEFAULTED';
 
@@ -24,5 +25,14 @@ class Repayment extends Model
         'amount',
         'due_on',
         'paid_on',
+        'amount_paid'
     ];
+
+    /**
+     * Get the loan of the repayment.
+     */
+    public function loan(): BelongsTo
+    {
+        return $this->belongsTo(Loan::class);
+    }
 }

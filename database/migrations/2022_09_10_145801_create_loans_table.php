@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->decimal('amount');
             $table->integer('term');
-            $table->string('status')->default(Loan::APPROVAL_PENDING);
+            $table->string('status')->default(Loan::LOAN_PENDING);
             $table->string('notes')->nullable()->comment('if loan was approved/rejected, the reason can captured here');
             $table->foreignIdFor(User::class, 'handled_by_id')->nullable()->comment('the id of admin, who handled the loan request case');
             $table->timestamps();
