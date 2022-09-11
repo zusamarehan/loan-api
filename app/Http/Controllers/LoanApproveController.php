@@ -13,6 +13,12 @@ class LoanApproveController extends Controller
 {
     public function __invoke(Loan $loan, LoanApproveAction $loanApprovalAction, Request $loanApprovalRequest): Response|Application|ResponseFactory
     {
+        if ($loan->status === Loan::LOAN_DECLINE) {
+            return response([
+                'message' => 'Declined loan cannot be approved',
+            ], Response::HTTP_CONFLICT);
+        }
+
         if ($loan->status === Loan::LOAN_APPROVED) {
             return response([
                 'message' => 'Loan has been already been approved',
