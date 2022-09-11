@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use App\Actions\Auth\LogoutUserAction;
+use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
+use function response;
 
 class LogoutController extends Controller
 {

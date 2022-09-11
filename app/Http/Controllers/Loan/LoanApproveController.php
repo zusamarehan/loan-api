@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Loan;
 
 use App\Actions\Loan\LoanApproveAction;
+use App\Http\Controllers\Controller;
 use App\Models\Loan;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use function response;
 
 class LoanApproveController extends Controller
 {

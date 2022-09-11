@@ -15,20 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Public Routes
-Route::post('/register', Controllers\RegisterController::class);
-Route::post('/login', Controllers\LoginController::class);
+Route::post('/register', Controllers\Auth\RegisterController::class);
+Route::post('/login', Controllers\Auth\LoginController::class);
 
 // Private Routes
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post('/logout', Controllers\LogoutController::class);
+    Route::post('/logout', Controllers\Auth\LogoutController::class);
 
     Route::prefix('loan')->group(function () {
         Route::middleware(['customer'])->group(function () {
-            Route::post('/request', Controllers\LoanRequestController::class);
+            Route::post('/request', Controllers\Loan\LoanRequestController::class);
         });
         Route::middleware(['admin'])->group(function () {
-            Route::post('/{loan}/approve', Controllers\LoanApproveController::class);
-            Route::post('/{loan}/decline', Controllers\LoanDeclineController::class);
+            Route::post('/{loan}/approve', Controllers\Loan\LoanApproveController::class);
+            Route::post('/{loan}/decline', Controllers\Loan\LoanDeclineController::class);
         });
     });
 });
