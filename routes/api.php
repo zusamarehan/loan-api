@@ -24,5 +24,7 @@ Route::middleware(['middleware' => 'auth:sanctum'])->group(function () {
 
     Route::prefix('loan')->group(function () {
         Route::post('/request', Controllers\LoanRequestController::class);
+        Route::post('/{loan}/approve', Controllers\LoanApproveController::class);
+        Route::post('/{loan}/decline', Controllers\LoanDeclineController::class);
     });
 });

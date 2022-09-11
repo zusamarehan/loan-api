@@ -10,11 +10,11 @@ class Loan extends Model
 {
     use HasFactory;
 
-    const APPROVAL_REJECTED = 'REJECTED';
+    const LOAN_DECLINE = 'DECLINED';
 
-    const APPROVAL_PENDING = 'PENDING';
+    const LOAN_PENDING = 'PENDING';
 
-    const APPROVAL_APPROVED = 'APPROVED';
+    const LOAN_APPROVED = 'APPROVED';
 
     /**
      * The attributes that are mass assignable.
