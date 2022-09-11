@@ -24,7 +24,7 @@ class LoginUserAction
             ];
         }
 
-        if (! $user && ! Hash::check($data['password'], $user->getAuthPassword())) {
+        if (! Hash::check($data['password'], $user->getAuthPassword())) {
             return [
                 'status' => Response::HTTP_UNAUTHORIZED,
                 'message' => 'Credentials do not match',
