@@ -21,7 +21,6 @@ Route::post('/login', Controllers\Auth\LoginController::class);
 // Private Routes
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/logout', Controllers\Auth\LogoutController::class);
-
     Route::prefix('loan')->group(function () {
         Route::middleware(['customer'])->group(function () {
             Route::post('/request', Controllers\Loan\LoanRequestController::class);
@@ -30,6 +29,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('/{loan}/approve', Controllers\Loan\LoanApproveController::class);
             Route::post('/{loan}/decline', Controllers\Loan\LoanDeclineController::class);
         });
+        Route::get('/{loan}', Controllers\Loan\LoanShowController::class);
     });
 
     Route::prefix('repayment')->middleware(['customer'])->group(function () {
