@@ -15,6 +15,7 @@ class Loan extends Model
     const LOAN_PENDING = 'PENDING';
 
     const LOAN_APPROVED = 'APPROVED';
+    const LOAN_PAID = 'PAID';
 
     /**
      * The attributes that are mass assignable.

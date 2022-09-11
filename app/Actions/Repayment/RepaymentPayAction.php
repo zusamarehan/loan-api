@@ -2,11 +2,19 @@
 
 namespace App\Actions\Repayment;
 
+use App\Actions\Loan\LoanRepaidAction;
 use App\Http\Resources\Repayment\RepaymentResource;
 use App\Models\Repayment;
 
 class RepaymentPayAction
 {
+    protected $loanRepaidAction;
+
+    public function __construct(LoanRepaidAction $loanRepaidAction)
+    {
+        $this->loanRepaidAction = $loanRepaidAction;
+    }
+
     public function execute(Repayment $repayment, array $data): array|RepaymentResource
     {
         validator($data, [
@@ -23,6 +31,8 @@ class RepaymentPayAction
         $repayment->amount_paid = round($data['amount'], 2);
         $repayment->paid_on = now();
         $repayment->update();
+
+        $this->loanRepaidAction->execute($repayment->loan);
 
         return new RepaymentResource($repayment);
     }
