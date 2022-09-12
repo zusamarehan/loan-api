@@ -26,6 +26,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('/request', Controllers\Loan\LoanRequestController::class);
         });
         Route::middleware(['admin'])->group(function () {
+            Route::get('/', Controllers\Loan\LoanListController::class);
             Route::post('/{loan}/approve', Controllers\Loan\LoanApproveController::class);
             Route::post('/{loan}/decline', Controllers\Loan\LoanDeclineController::class);
         });
