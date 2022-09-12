@@ -7,7 +7,6 @@ use App\Actions\Loan\LoanRequestAction;
 use App\Actions\Repayment\RepaymentGenerateAction;
 use App\Models\Loan;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class LoanDeclineTest extends TestCase
@@ -30,7 +29,7 @@ class LoanDeclineTest extends TestCase
         $this->actingAs($adminUser);
 
         $decline = (new LoanDeclineAction)->execute(Loan::query()->find($loan->id), [
-            'notes' => "Decline",
+            'notes' => 'Decline',
         ]);
 
         $this->assertEquals(Loan::LOAN_DECLINE, $decline->status);

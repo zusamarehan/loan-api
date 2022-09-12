@@ -3,12 +3,10 @@
 namespace Tests\Unit\Loan;
 
 use App\Actions\Loan\LoanApproveAction;
-use App\Actions\Loan\LoanDeclineAction;
 use App\Actions\Loan\LoanRequestAction;
 use App\Actions\Repayment\RepaymentGenerateAction;
 use App\Models\Loan;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class LoanApprovalTest extends TestCase
@@ -31,7 +29,7 @@ class LoanApprovalTest extends TestCase
         $this->actingAs($adminUser);
 
         $approved = (new LoanApproveAction())->execute(Loan::query()->find($loan->id), [
-            'notes' => "Approved",
+            'notes' => 'Approved',
         ]);
 
         $this->assertEquals(Loan::LOAN_APPROVED, $approved->status);

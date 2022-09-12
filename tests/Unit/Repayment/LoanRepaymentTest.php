@@ -10,7 +10,6 @@ use App\Actions\Repayment\RepaymentPayAction;
 use App\Models\Loan;
 use App\Models\Repayment;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class LoanRepaymentTest extends TestCase
@@ -44,7 +43,7 @@ class LoanRepaymentTest extends TestCase
             'amount' => $repaymentAmount,
         ]);
 
-        $this->assertEquals(round(100/3, 2), $repayment->amount);
+        $this->assertEquals(round(100 / 3, 2), $repayment->amount);
         $this->assertEquals($repaymentAmount, $repayment->amount_paid);
         $this->assertEquals(Repayment::REPAYMENT_PAID, $repayment->status);
     }

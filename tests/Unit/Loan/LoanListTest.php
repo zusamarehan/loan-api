@@ -4,7 +4,6 @@ namespace Tests\Unit\Loan;
 
 use App\Models\Loan;
 use App\Queries\Loan\LoanListQuery;
-use App\Queries\Loan\LoanShowQuery;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

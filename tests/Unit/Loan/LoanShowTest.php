@@ -8,7 +8,6 @@ use App\Models\Loan;
 use App\Queries\Loan\LoanShowQuery;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use function Symfony\Component\Translation\t;
 
 class LoanShowTest extends TestCase
 {
@@ -32,6 +31,5 @@ class LoanShowTest extends TestCase
 
         $this->assertCount($term, $loan->repayments);
         $this->assertEquals($user->id, $loan->user_id);
-
     }
 }
