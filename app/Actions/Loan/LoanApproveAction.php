@@ -18,6 +18,8 @@ class LoanApproveAction
         $loan->handled_by_id = auth()->user()->id;
         $loan->update();
 
+        $loan->load(['user', 'handled_by']);
+
         return new LoanResource($loan);
     }
 }

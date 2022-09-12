@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Repayment;
 
+use App\Http\Resources\Loan\LoanResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,6 +19,7 @@ class RepaymentResource extends JsonResource
         return [
             'id' => $this->id,
             'loan_id' => $this->loan_id,
+            'loan' => new LoanResource($this->whenLoaded('loan')),
             'amount' => $this->amount,
             'amount_paid' => $this->amount_paid,
             'due_on' => $this->due_on,

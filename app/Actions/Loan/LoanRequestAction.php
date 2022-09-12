@@ -30,7 +30,8 @@ class LoanRequestAction
         $loan->save();
 
         $this->repayments->execute($loan);
-        $loan->load(['repayments']);
+
+        $loan->load(['repayments', 'user', 'handled_by']);
 
         return new LoanResource($loan);
     }

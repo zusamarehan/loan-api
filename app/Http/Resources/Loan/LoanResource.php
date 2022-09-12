@@ -18,11 +18,13 @@ class LoanResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'user_id' => $this->user_id,
             'user' => new UserResource($this->whenLoaded('user')),
             'amount' => $this->amount,
             'term' => $this->term,
             'status' => $this->status,
             'notes' => $this->notes,
+            'handled_by_id' => $this->handled_by_id,
             'handler' => new UserResource($this->whenLoaded('handled_by')),
             'repayments' => RepaymentResource::collection($this->whenLoaded('repayments')),
             'updated_at' => $this->updated_at,

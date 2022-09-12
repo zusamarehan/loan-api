@@ -34,6 +34,8 @@ class RepaymentPayAction
 
         $this->loanRepaidAction->execute($repayment->loan);
 
+        $repayment->load(['loan']);
+
         return new RepaymentResource($repayment);
     }
 }
