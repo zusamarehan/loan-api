@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Loan;
 
-use App\Actions\Loan\LoanApproveAction;
 use App\Actions\Loan\LoanDeclineAction;
 use App\Actions\Loan\LoanRequestAction;
 use App\Actions\Repayment\RepaymentGenerateAction;
@@ -25,13 +24,13 @@ class LoanDeclineTest extends TestCase
 
         $loan = (new LoanRequestAction(new RepaymentGenerateAction()))->execute([
             'amount' => 100,
-            'term' => 3
+            'term' => 3,
         ]);
 
         $this->actingAs($adminUser);
 
         $response = $this->postJson(
-            route('admin.loan.decline', ['loan' => $loan->id]), [ 'notes' => "Declined"]
+            route('admin.loan.decline', ['loan' => $loan->id]), ['notes' => 'Declined']
         );
 
         $response->assertOk();
@@ -50,13 +49,13 @@ class LoanDeclineTest extends TestCase
 
         $loan = (new LoanRequestAction(new RepaymentGenerateAction()))->execute([
             'amount' => 100,
-            'term' => 3
+            'term' => 3,
         ]);
 
         $this->actingAs($anotherUser);
 
         $this->postJson(
-            route('admin.loan.decline', ['loan' => $loan->id]), [ 'notes' => "Declined"]
+            route('admin.loan.decline', ['loan' => $loan->id]), ['notes' => 'Declined']
         )->assertUnauthorized();
     }
 
@@ -70,17 +69,17 @@ class LoanDeclineTest extends TestCase
 
         $loan = (new LoanRequestAction(new RepaymentGenerateAction()))->execute([
             'amount' => 100,
-            'term' => 3
+            'term' => 3,
         ]);
 
         $this->actingAs($adminUser);
 
-        (new LoanDeclineAction())->execute( Loan::query()->find($loan->id), [
-            'notes' => 'Approved'
+        (new LoanDeclineAction())->execute(Loan::query()->find($loan->id), [
+            'notes' => 'Approved',
         ]);
 
         $response = $this->postJson(
-            route('admin.loan.decline', ['loan' => $loan->id]), [ 'notes' => "Declined"]
+            route('admin.loan.decline', ['loan' => $loan->id]), ['notes' => 'Declined']
         );
 
         $response->assertStatus(Response::HTTP_CONFLICT);

@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Loan;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -27,9 +26,9 @@ class LoanRequestTest extends TestCase
         $response->assertOk();
 
         $response->assertJsonPath('amount', $amount);
-            $response->assertJsonPath('term', $term);
-            $response->assertJsonCount($term, 'repayments');
-            $response->assertJsonPath('user_id', $user->id);
+        $response->assertJsonPath('term', $term);
+        $response->assertJsonCount($term, 'repayments');
+        $response->assertJsonPath('user_id', $user->id);
     }
 
     public function test_a_loan_request_cannot_be_created_with_incorrect_amount()
@@ -85,6 +84,5 @@ class LoanRequestTest extends TestCase
             'amount' => $amount,
             'term' => $term,
         ])->assertUnauthorized();
-
     }
 }

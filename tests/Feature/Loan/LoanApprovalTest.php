@@ -24,13 +24,13 @@ class LoanApprovalTest extends TestCase
 
         $loan = (new LoanRequestAction(new RepaymentGenerateAction()))->execute([
             'amount' => 100,
-            'term' => 3
+            'term' => 3,
         ]);
 
         $this->actingAs($adminUser);
 
         $response = $this->postJson(
-            route('admin.loan.approve', ['loan' => $loan->id]), [ 'notes' => "Approved"]
+            route('admin.loan.approve', ['loan' => $loan->id]), ['notes' => 'Approved']
         );
 
         $response->assertOk();
@@ -49,13 +49,13 @@ class LoanApprovalTest extends TestCase
 
         $loan = (new LoanRequestAction(new RepaymentGenerateAction()))->execute([
             'amount' => 100,
-            'term' => 3
+            'term' => 3,
         ]);
 
         $this->actingAs($anotherUser);
 
         $this->postJson(
-            route('admin.loan.approve', ['loan' => $loan->id]), [ 'notes' => "Approved"]
+            route('admin.loan.approve', ['loan' => $loan->id]), ['notes' => 'Approved']
         )->assertUnauthorized();
     }
 
@@ -69,17 +69,17 @@ class LoanApprovalTest extends TestCase
 
         $loan = (new LoanRequestAction(new RepaymentGenerateAction()))->execute([
             'amount' => 100,
-            'term' => 3
+            'term' => 3,
         ]);
 
         $this->actingAs($adminUser);
 
-        (new LoanApproveAction())->execute( Loan::query()->find($loan->id), [
-            'notes' => 'Approved'
+        (new LoanApproveAction())->execute(Loan::query()->find($loan->id), [
+            'notes' => 'Approved',
         ]);
 
         $response = $this->postJson(
-            route('admin.loan.approve', ['loan' => $loan->id]), [ 'notes' => "Approved"]
+            route('admin.loan.approve', ['loan' => $loan->id]), ['notes' => 'Approved']
         );
 
         $response->assertStatus(Response::HTTP_CONFLICT);

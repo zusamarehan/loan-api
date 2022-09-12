@@ -25,13 +25,13 @@ class LoanRepaymentTest extends TestCase
 
         $loan = (new LoanRequestAction(new RepaymentGenerateAction()))->execute([
             'amount' => 100,
-            'term' => 3
+            'term' => 3,
         ]);
 
         $this->actingAs($adminUser);
 
-        (new LoanApproveAction())->execute( Loan::query()->find($loan->id), [
-            'notes' => 'Approved'
+        (new LoanApproveAction())->execute(Loan::query()->find($loan->id), [
+            'notes' => 'Approved',
         ]);
 
         $this->actingAs($user);
@@ -40,7 +40,7 @@ class LoanRepaymentTest extends TestCase
 
         $response = $this->postJson(
             route('customer.repayment.repay', ['repayment' => $loan['repayments'][0]['id']]), [
-                'amount' => $repaymentAmount
+                'amount' => $repaymentAmount,
             ]
         );
 
@@ -60,13 +60,13 @@ class LoanRepaymentTest extends TestCase
 
         $loan = (new LoanRequestAction(new RepaymentGenerateAction()))->execute([
             'amount' => 100,
-            'term' => 3
+            'term' => 3,
         ]);
 
         $this->actingAs($adminUser);
 
-        (new LoanApproveAction())->execute( Loan::query()->find($loan->id), [
-            'notes' => 'Approved'
+        (new LoanApproveAction())->execute(Loan::query()->find($loan->id), [
+            'notes' => 'Approved',
         ]);
 
         $this->actingAs($user);
@@ -75,7 +75,7 @@ class LoanRepaymentTest extends TestCase
 
         $response = $this->postJson(
             route('customer.repayment.repay', ['repayment' => $loan['repayments'][0]['id']]), [
-                'amount' => $repaymentAmount
+                'amount' => $repaymentAmount,
             ]
         );
 
@@ -92,13 +92,13 @@ class LoanRepaymentTest extends TestCase
 
         $loan = (new LoanRequestAction(new RepaymentGenerateAction()))->execute([
             'amount' => 100,
-            'term' => 3
+            'term' => 3,
         ]);
 
         $this->actingAs($adminUser);
 
-        (new LoanApproveAction())->execute( Loan::query()->find($loan->id), [
-            'notes' => 'Approved'
+        (new LoanApproveAction())->execute(Loan::query()->find($loan->id), [
+            'notes' => 'Approved',
         ]);
 
         $this->actingAs($adminUser);
@@ -107,7 +107,7 @@ class LoanRepaymentTest extends TestCase
 
         $response = $this->postJson(
             route('customer.repayment.repay', ['repayment' => $loan['repayments'][0]['id']]), [
-                'amount' => $repaymentAmount
+                'amount' => $repaymentAmount,
             ]
         );
 

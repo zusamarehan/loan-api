@@ -12,7 +12,7 @@ abstract class TestCase extends BaseTestCase
     public function adminUser()
     {
         return User::factory([
-            'is_admin' => 1
+            'is_admin' => 1,
         ])->create();
     }
 
