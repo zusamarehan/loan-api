@@ -2,10 +2,8 @@
 
 namespace Tests\Feature\Loan;
 
-use App\Actions\Loan\LoanApproveAction;
 use App\Actions\Loan\LoanRequestAction;
 use App\Actions\Repayment\RepaymentGenerateAction;
-use App\Models\Loan;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Tests\TestCase;

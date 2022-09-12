@@ -2,13 +2,8 @@
 
 namespace Tests\Feature\Loan;
 
-use App\Actions\Loan\LoanApproveAction;
-use App\Actions\Loan\LoanRequestAction;
-use App\Actions\Repayment\RepaymentGenerateAction;
 use App\Models\Loan;
-use Database\Factories\LoanFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class LoanListTest extends TestCase
@@ -52,7 +47,7 @@ class LoanListTest extends TestCase
 
         Loan::factory(10)->create();
         Loan::factory(3)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $this->actingAs($adminUser);
@@ -72,7 +67,7 @@ class LoanListTest extends TestCase
 
         Loan::factory(10)->create();
         Loan::factory(3)->create([
-            'status' => Loan::LOAN_PAID
+            'status' => Loan::LOAN_PAID,
         ]);
 
         $this->actingAs($adminUser);

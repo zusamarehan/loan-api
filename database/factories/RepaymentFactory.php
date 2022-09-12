@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Loan;
 use App\Models\Repayment;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -25,7 +24,7 @@ class RepaymentFactory extends Factory
             'amount_paid' => null,
             'due_on' => now()->addWeek(),
             'paid_on' => null,
-            'status' => Repayment::REPAYMENT_PENDING
+            'status' => Repayment::REPAYMENT_PENDING,
         ];
     }
 }

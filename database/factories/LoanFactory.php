@@ -26,7 +26,7 @@ class LoanFactory extends Factory
                 Repayment::factory(1)->create([
                     'loan_id' => $loan,
                     'amount' => $loan->amount / $loan->term,
-                    'due_on' => now()->addWeeks($i + 1)
+                    'due_on' => now()->addWeeks($i + 1),
                 ]);
             }
         });
@@ -43,7 +43,7 @@ class LoanFactory extends Factory
             'user_id' => User::factory(),
             'amount' => rand(100, 100000),
             'term' => rand(3, 8),
-            'status' => Loan::LOAN_PENDING
+            'status' => Loan::LOAN_PENDING,
         ];
     }
 }
