@@ -19,7 +19,7 @@ class CustomerMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (! auth()->user()->isCustomer()) {
-            return abort(Response::HTTP_FORBIDDEN, 'Unauthorized');
+            return abort(Response::HTTP_UNAUTHORIZED, 'Unauthorized');
         }
 
         return $next($request);
