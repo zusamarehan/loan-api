@@ -12,7 +12,7 @@ class LoanRequestTest extends TestCase
 
     public function test_a_loan_request_can_be_created_with_correct_inputs()
     {
-        $user = User::factory()->create();
+        $user = $this->user();
 
         $this->actingAs($user);
 
@@ -34,7 +34,7 @@ class LoanRequestTest extends TestCase
 
     public function test_a_loan_request_cannot_be_created_with_incorrect_amount()
     {
-        $user = User::factory()->create();
+        $user = $this->user();
 
         $this->actingAs($user);
 
@@ -54,7 +54,7 @@ class LoanRequestTest extends TestCase
 
     public function test_a_loan_request_cannot_be_created_with_incorrect_term()
     {
-        $user = User::factory()->create();
+        $user = $this->user();
 
         $this->actingAs($user);
 
@@ -74,9 +74,7 @@ class LoanRequestTest extends TestCase
 
     public function test_a_loan_cannot_be_requested_by_a_admin_user()
     {
-        $user = User::factory([
-            'is_admin' => 1
-        ])->create();
+        $user = $this->adminUser();
 
         $this->actingAs($user);
 

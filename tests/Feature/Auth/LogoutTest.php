@@ -13,7 +13,7 @@ class LogoutTest extends TestCase
 
     public function test_a_user_can_logout_successfully()
     {
-        $user = User::factory()->create();
+        $user = $this->user();
 
         Sanctum::actingAs($user);
 
